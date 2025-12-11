@@ -86,4 +86,4 @@ jobs:
           kubectl apply -f kubernetes/kf2-service.yaml
 
       - name: Show KF2 service
-        run: kubectl get svc kf2-server -n games -o wide
+        run: kubectl get svc kf2-server -n killingfloor2 -o wide
