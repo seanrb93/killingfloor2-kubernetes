@@ -31,11 +31,10 @@ spec:
             - containerPort: 20560
               protocol: UDP
           env:
-            - name: TZ
+            - name: timezone
               value: "Europe/London"
-            # Optionally tune these (examples only):
-            # - name: LGSM_UPDATEONSTART
-            #   value: "true"
+            - name: LGSM_UPDATEONSTART
+              value: "true"
           volumeMounts:
             - name: data
               mountPath: /data
