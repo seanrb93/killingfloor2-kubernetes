@@ -76,11 +76,11 @@ resource "google_container_node_pool" "kf2_nodes" {
 
   autoscaling {
     min_node_count = 1
-    max_node_count = 3
+    max_node_count = 1
   }
 
   node_config {
-    machine_type = "e2-small"
+    machine_type = "e2-medium"
 
     oauth_scopes = [
       "https://www.googleapis.com/auth/cloud-platform",
