@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kf2-server
+  namespace: games
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kf2-server
+  template:
+    metadata:
+      labels:
+        app: kf2-server
+    spec:
+      containers:
+        - name: kf2
+          image: gameservermanagers/gameserver:kf2
+          imagePullPolicy: IfNotPresent
+          ports:
+            # Game port
+            - containerPort: 7777
+              protocol: UDP
+            # Query port
+            - containerPort: 27015
+              protocol: UDP
+            # Web admin port
+            - containerPort: 8080
+              protocol: TCP
+            # Steam port
+            - containerPort: 20560
+              protocol: UDP
+          env:
+            - name: TZ
+              value: "Europe/London"
+            # Optionally tune these (examples only):
+            # - name: LGSM_UPDATEONSTART
+            #   value: "true"
+          volumeMounts:
+            - name: data
+              mountPath: /data
+          resources:
+            requests:
+              cpu: "2"
+              memory: "4Gi"
+            limits:
+              cpu: "3"
+              memory: "6Gi"
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: kf2-data
