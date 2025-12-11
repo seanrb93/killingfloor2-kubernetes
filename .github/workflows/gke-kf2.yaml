@@ -43,10 +43,12 @@ jobs:
           project_id: ${{ env.PROJECT_ID }}
 
       - name: Terraform init
-        run: terraform -chdir=terraform/gcp init
+        working-directory: terraform/gcp
+        run: terraform init -input=false
 
       - name: Terraform apply
-        run: terraform -chdir=terraform/gcp apply -auto-approve
+        working-directory: terraform/gcp
+        run: terraform apply -auto-approve -input=false
 
   deploy-kf2:
     name: Deploy KF2 to GKE
