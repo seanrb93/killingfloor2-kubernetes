@@ -12,7 +12,7 @@ variable "region" {
 variable "zone" {
   description = "GCP zone for the GKE cluster"
   type        = string
-  default     = "europe-west1-b"
+  default     = "europe-west2-a"
 }
 
 variable "cluster_name" {
