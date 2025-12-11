@@ -8,6 +8,11 @@ terraform {
 
   required_version = ">= 1.6.0"
   
+  backend "gcs" {
+    bucket = "tfstate-kf2-gke"
+    prefix = "kf2/terraform/state"
+    
+  }
 }
 
 provider "google" {
