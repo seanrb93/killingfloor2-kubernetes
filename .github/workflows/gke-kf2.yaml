@@ -11,7 +11,7 @@ on:
 
 env:
   PROJECT_ID: psyched-axle-279218
-  REGION: europe-west1
+  REGION: europe-west2
   ZONE: europe-west2-a
   GKE_CLUSTER: kf2-gke
 
