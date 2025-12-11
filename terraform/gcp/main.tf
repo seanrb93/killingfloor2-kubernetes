@@ -98,9 +98,9 @@ resource "google_container_node_pool" "kf2_nodes" {
 }
 
 output "cluster_name" {
-  value = google_container_cluster.kf2.name
+  value = google_container_cluster.kf2_cluster.name
 }
 
 output "cluster_location" {
-  value = google_container_cluster.kf2.location
+  value = google_container_cluster.kf2_cluster.location
 }
