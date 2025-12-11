@@ -10,6 +10,7 @@ on:
   workflow_dispatch: {}
 
 env:
+  PROJECT_ID: psyched-axle-279218
   REGION: europe-west1
   ZONE: europe-west1-b
   GKE_CLUSTER: kf2-gke
@@ -21,7 +22,7 @@ jobs:
 
     permissions:
       contents: read
-      
+
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
@@ -39,7 +40,7 @@ jobs:
       - name: Set GCP project
         uses: google-github-actions/setup-gcloud@v2
         with:
-          project_id: ${{ secrets.PROJECT_ID }}
+          project_id: ${{ env.PROJECT_ID }}
 
       - name: Terraform init
         run: terraform -chdir=terraform/gcp init
