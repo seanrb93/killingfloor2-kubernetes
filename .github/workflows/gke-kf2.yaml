@@ -85,7 +85,7 @@ jobs:
 
       - name: Apply KF2 Kubernetes manifests
         run: |
-          kubectl apply -f kubernetes/namespace-games.yaml
+          kubectl apply -f kubernetes/namespace-killingfloor2.yaml
           kubectl apply -f kubernetes/kf2-pvc.yaml
           kubectl apply -f kubernetes/kf2-deployment.yaml
           kubectl apply -f kubernetes/kf2-service.yaml
