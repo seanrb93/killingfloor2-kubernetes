@@ -15,6 +15,10 @@ terraform {
   }
 }
 
+data "google_project" "this" {
+  project_id = var.project_id
+}
+
 provider "google" {
   project = var.project_id
   region  = var.region
@@ -38,26 +42,19 @@ resource "google_container_cluster" "kf2_cluster" {
 
   ip_allocation_policy {}
 
-  release_channel {
-    channel = "REGULAR"
-  }
-
   depends_on = [google_project_service.container]
+  deletion_protection = false
   
 }
 
 resource "google_container_node_pool" "kf2_nodes" {
-  name       = "${var.cluster_name}-pool"
-  location   = google_container_cluster.kf2_cluster.location
+  name       = "primary-pool"
+  location   = var.zone
   cluster    = google_container_cluster.kf2_cluster.name
-
-  autoscaling {
-    min_node_count = 1
-    max_node_count = 1
-  }
+  node_count = var.node_count
 
   node_config {
-    machine_type = "e2-medium"
+    machine_type = var.node_machine_type
 
     oauth_scopes = [
       "https://www.googleapis.com/auth/cloud-platform",
@@ -67,17 +64,20 @@ resource "google_container_node_pool" "kf2_nodes" {
 
   }
 
-  management {
-    auto_repair  = true
-    auto_upgrade = true
-  }
-
 }
 
 output "cluster_name" {
   value = google_container_cluster.kf2_cluster.name
 }
 
-output "cluster_location" {
-  value = google_container_cluster.kf2_cluster.location
+output "region" {
+  value = var.region
+}
+
+output "zone" {
+  value = var.zone
+}
+
+output "project_id" {
+  value = var.project_id
 }
