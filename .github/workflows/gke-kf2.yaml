@@ -2,7 +2,7 @@ name: GKE KF2 Infra + Deploy
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
     paths:
       - "terraform/gcp/**"
       - "kubernetes/**"
@@ -10,7 +10,7 @@ on:
   workflow_dispatch: {}
 
 env:
-  PROJECT_ID: psyched-axle-279218
+  PROJECT_ID: replace_this_with_your_GCP_Project_ID
   REGION: europe-west2
   ZONE: europe-west2-a
   GKE_CLUSTER: kf2-gke
@@ -57,7 +57,7 @@ jobs:
 
     permissions:
       contents: read
-      id-token: write  
+      id-token: write
 
     steps:
       - name: Checkout repo
