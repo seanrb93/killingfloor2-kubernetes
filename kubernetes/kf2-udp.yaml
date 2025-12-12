@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: kf2-server
+  name: kf2-udp
   namespace: killingfloor2
 spec:
   type: LoadBalancer
@@ -17,10 +17,6 @@ spec:
       port: 27015
       targetPort: 27015
       protocol: UDP
-    - name: webadmin
-      port: 8080
-      targetPort: 8080
-      protocol: TCP
     - name: steam
       port: 20560
       targetPort: 20560

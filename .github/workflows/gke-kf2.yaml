@@ -82,10 +82,7 @@ jobs:
 
       - name: Apply KF2 Kubernetes manifests
         run: |
-          kubectl apply -f kubernetes/namespace-killingfloor2.yaml
-          kubectl apply -f kubernetes/kf2-pvc.yaml
-          kubectl apply -f kubernetes/kf2-deployment.yaml
-          kubectl apply -f kubernetes/kf2-service.yaml
+          kubectl apply -f kubernetes/
 
       - name: Show KF2 service
-        run: kubectl get svc kf2-server -n killingfloor2 -o wide
+        run: kubectl get svc kf2-udp -n killingfloor2 -o wide
